@@ -1,0 +1,49 @@
+.rt-thead {
+  min-width: 600px !important;
+  position: relative !important;
+  z-index: 9999 !important;
+  /* background-color: white !important; */
+}
+
+.rt-tr -even {
+  background: #dddddd !important;
+}
+
+.rt-tr -odd {
+  background: black !important;
+}
+
+.rt-td {
+  /* width: 100px; */
+  /* height: 100px; */
+  /* background: red; */
+  /* border: 1px solid #dddddd; */
+  /* text-align: left;
+  padding: 8px; */
+  position: relative;
+  -webkit-animation: mymove 20s infinite; /* Safari 4.0 - 8.0 */
+  animation: mymove 20s infinite;
+  -webkit-animation-direction: alternate-reverse;
+  z-index: 999;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+  from {
+    bottom: 1000px;
+  }
+  to {
+    bottom: 0px;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes mymove {
+  from {
+    bottom: 1000px;
+  }
+  to {
+    bottom: 0px;
+    animation-timing-function: linear;
+  }
+}

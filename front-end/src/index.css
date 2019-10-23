@@ -2,4 +2,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.react-datepicker__input-container {
+  width: 139% !important;
+}
+
+.inputdate {
+  width: 85% !important;
 }
