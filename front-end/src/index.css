@@ -7,9 +7,65 @@ body {
 }
 
 .react-datepicker__input-container {
-  width: 139% !important;
+  width: 140% !important;
 }
 
 .inputdate {
   width: 85% !important;
+}
+
+.rt-thead {
+  min-width: 600px !important;
+  position: relative !important;
+  z-index: 9999 !important;
+  /* background-color: white !important; */
+}
+
+/* .rt-tr -even {
+  background: #dddddd !important;
+}
+
+.rt-tr -odd {
+  background: black !important;
+}
+
+.rt-td {
+  position: relative;
+  -webkit-animation: mymove 20s infinite;
+  animation: mymove 20s infinite;
+  -webkit-animation-direction: alternate-reverse;
+  z-index: 999;
+}
+
+@-webkit-keyframes mymove {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: 0px;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes mymove {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: 0px;
+    animation-timing-function: linear;
+  }
+} */
+
+.scroll-wrap,
+.scroll {
+  width: 100%;
+  height: 300px;
+  overflow-y: scroll;
+  margin: 0;
+  position: relative;
+  /* text-align: center !important; */
+}
+.scroll-group {
+  position: absolute;
 }

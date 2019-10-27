@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Table, Modal, Button } from 'antd';
-import { Row, Col, Label } from 'reactstrap';
+// import ReactDOM from 'react-dom';
+import $ from 'jquery';
+import { Modal, Button } from 'antd';
+import { Row, Col, Label, Card, CardBody, CardHeader } from 'reactstrap';
 import reqwest from 'reqwest';
-import ReactTable from 'react-table';
 import DatePicker from 'react-datepicker';
 import Axios from 'axios';
 import { AvForm, AvField, AvGroup } from 'availity-reactstrap-validation';
@@ -14,7 +14,56 @@ import 'react-table/react-table.css';
 
 class App extends Component {
   state = {
-    data: [],
+    data: [
+      {
+        nama_project: 'Project1',
+        Task: 'Task1',
+        priority: 'Prioritas1',
+        pic: 'PIC1',
+        deadline: '2019',
+        status_progress: 'Progres1'
+      },
+      {
+        nama_project: 'Project2',
+        Task: 'Task2',
+        priority: 'Prioritas2',
+        pic: 'PIC2',
+        deadline: '2012',
+        status_progress: 'Progres2'
+      },
+      {
+        nama_project: 'Project3',
+        Task: 'Task3',
+        priority: 'Prioritas3',
+        pic: 'PIC3',
+        deadline: '2013',
+        status_progress: 'Progres3'
+      },
+      {
+        nama_project: 'Project3',
+        Task: 'Task3',
+        priority: 'Prioritas3',
+        pic: 'PIC3',
+        deadline: '2013',
+        status_progress: 'Progres3'
+      },
+      {
+        nama_project: 'Project3',
+        Task: 'Task3',
+        priority: 'Prioritas3',
+        pic: 'PIC3',
+        deadline: '2013',
+        status_progress: 'Progres3'
+      },
+      {
+        nama_project: 'Project3',
+        Task: 'Task3',
+        priority: 'Prioritas3',
+        pic: 'PIC3',
+        deadline: '2013',
+        status_progress: 'Progres3'
+      }
+    ],
     // pagination: {},
     loading: false,
     visible: false,
@@ -74,92 +123,151 @@ class App extends Component {
   };
 
   componentDidMount() {
-    Axios({
-      method: 'get',
-      url: 'http://192.168.100.12:8000/monitorings/'
-    }).then(response => {
-      this.setState({
-        data: response.data
+    // Axios({
+    //   method: 'get',
+    //   url: 'http://192.168.100.12:8000/monitorings/'
+    // }).then(response => {
+    //   this.setState({
+    //     data: response.data,
+    //     size: ReactDOM.findDOMNode(this).offsetHeight
+    //   });
+    // });
+    $('.scroll').wrap('<div class="scroll-group"></div>');
+    $('.scroll').css({ overflow: 'hidden', height: 'auto', width: '1820px' });
+    // $('.scroll-group').append($('.scroll').clone());
+    $('.scroll-group').wrap('<div class="scroll-wrap"></div>');
+    $('.scroll-wrap').css({ overflow: 'hidden' });
+
+    /*animate*/
+    var targetY = $('.scroll')
+      .eq(0)
+      .outerHeight();
+    var $scrollGroup = $('.scroll-group');
+    var scroll = function(resetY) {
+      $scrollGroup.animate(
+        { top: targetY * -1 + 'px' },
+        9000,
+        'linear',
+        function() {
+          $scrollGroup.css({ top: 0 });
+          scroll();
+        }
+      );
+
+      $scrollGroup.hover(function() {
+        $scrollGroup.stop(true, false);
       });
-    });
+      $scrollGroup.mouseleave(function() {
+        scroll();
+      });
+    };
+
+    scroll();
   }
 
-  // handleTableChange = (pagination, filters, sorter) => {
-  //   // const pager = { ...this.state.pagination };
-  //   // pager.current = pagination.current;
-  //   // this.setState({
-  //   //   pagination: pager,
-  //   // });
-  //   this.fetch({
-  //     // results: pagination.pageSize,
-  //     // page: pagination.current,
-  //     sortField: sorter.field,
-  //     sortOrder: sorter.order,
-  //     ...filters
-  //   });
-  // };
+  handleTableChange = (pagination, filters, sorter) => {
+    // const pager = { ...this.state.pagination };
+    // pager.current = pagination.current;
+    // this.setState({
+    //   pagination: pager,
+    // });
+    this.fetch({
+      // results: pagination.pageSize,
+      // page: pagination.current,
+      sortField: sorter.field,
+      sortOrder: sorter.order,
+      ...filters
+    });
+  };
 
-  // fetch = (params = {}) => {
-  //   this.setState({ loading: true });
-  //   reqwest({
-  //     url: 'http://192.168.100.12:8000/monitorings/',
-  //     method: 'get',
-  //     data: {
-  //       // results: 10,
-  //       ...params
-  //     },
-  //     type: 'json'
-  //   }).then(data => {
-  //     console.log('params:', data);
-  //     // const pagination = { ...this.state.pagination };
-  //     // Read total count from server
-  //     // pagination.total = data.totalCount;
-  //     // pagination.total = 200;
-  //     this.setState({
-  //       loading: false,
-  //       data: data
-  //       // pagination,
-  //     });
-  //   });
-  // };
+  fetch = (params = {}) => {
+    this.setState({ loading: true });
+    reqwest({
+      url: 'http://192.168.100.12:8000/monitorings/',
+      method: 'get',
+      data: {
+        // results: 10,
+        ...params
+      },
+      type: 'json'
+    }).then(data => {
+      console.log('params:', data);
+      // const pagination = { ...this.state.pagination };
+      // Read total count from server
+      // pagination.total = data.totalCount;
+      // pagination.total = 200;
+      this.setState({
+        loading: false,
+        data: data
+        // pagination,
+      });
+    });
+  };
 
   render() {
     // const { projects, project } = this.state
-    const columns = [
-      {
-        id: 'nama_project',
-        Header: 'Nama Project',
-        accessor: 'nama_project' // String-based value accessors!
-      },
-      {
-        id: 'Task',
-        Header: 'Task',
-        accessor: 'Task'
-      },
-      {
-        id: 'priority', // Required because our accessor is not a string
-        Header: 'Priority',
-        accessor: 'priority'
-      },
-      {
-        id: 'pic', // Required because our accessor is not a string
-        Header: 'PIC',
-        accessor: 'pic'
-      },
-      {
-        id: 'deadline', // Required because our accessor is not a string
-        Header: 'Deadline',
-        accessor: 'deadline'
-      },
-      {
-        id: 'status_progress', // Required because our accessor is not a string
-        Header: 'Status Progress',
-        accessor: 'status_progress'
-      }
-    ];
+    // const columns = [
+    //   {
+    //     id: 'nama_project',
+    //     Header: 'Nama Project',
+    //     accessor: 'nama_project' // String-based value accessors!
+    //   },
+    //   {
+    //     id: 'Task',
+    //     Header: 'Task',
+    //     accessor: 'Task'
+    //   },
+    //   {
+    //     id: 'priority', // Required because our accessor is not a string
+    //     Header: 'Priority',
+    //     accessor: 'priority'
+    //   },
+    //   {
+    //     id: 'pic', // Required because our accessor is not a string
+    //     Header: 'PIC',
+    //     accessor: 'pic'
+    //   },
+    //   {
+    //     id: 'deadline', // Required because our accessor is not a string
+    //     Header: 'Deadline',
+    //     accessor: 'deadline'
+    //   },
+    //   {
+    //     id: 'status_progress', // Required because our accessor is not a string
+    //     Header: 'Status Progress',
+    //     accessor: 'status_progress'
+    //   }
+    // ];
     // var set = document.getElementById('tables').offsetHeight;
-    console.log('halo', this.state.data);
-    const nama = this.state.data.map(value => <li>{value.nama_project}</li>);
+    console.log('halo');
+    const nama_project = this.state.data.map(value => (
+      <div style={{ marginBottom: '40px', marginTop: '20px' }}>
+        {value.nama_project}
+      </div>
+    ));
+    const Task = this.state.data.map(value => (
+      <div style={{ marginBottom: '40px', marginTop: '20px' }}>
+        {value.Task}
+      </div>
+    ));
+    const priority = this.state.data.map(value => (
+      <div style={{ marginBottom: '40px', marginTop: '20px' }}>
+        {value.priority}
+      </div>
+    ));
+    const pic = this.state.data.map(value => (
+      <div style={{ marginBottom: '40px', marginTop: '20px' }}>{value.pic}</div>
+    ));
+    const deadline = this.state.data.map(value => (
+      <div style={{ marginBottom: '40px', marginTop: '20px' }}>
+        {value.deadline}
+      </div>
+    ));
+    const status_progress = this.state.data.map(value => (
+      <div style={{ marginBottom: '40px', marginTop: '20px' }}>
+        {value.status_progress}
+      </div>
+    ));
     return (
       <div className="App">
         <Modal
@@ -194,13 +302,10 @@ class App extends Component {
                   onChange={this.handleChange}
                 />
               </Col>
-              webkitAnimationDirection
             </AvGroup>
-            webkitAnimationDirection
+
             <AvGroup row>
-              webkitAnimationDirection
               <Col md="auto">
-                webkitAnimationDirection
                 <Label for="priority">Priority</Label>
               </Col>
               <Col md="auto">
@@ -267,14 +372,51 @@ class App extends Component {
             </Button>
           </Col>
         </Row>
+        <p />
 
-        <Row>
-          <Col>
-            <div id="header">
-              <ul>{nama}</ul>
-            </div>
-          </Col>
-        </Row>
+        {/* header */}
+        <Card
+          style={{
+            position: 'relative',
+            borderStyle: 'groove',
+            borderRadius: '10px'
+          }}
+        >
+          <CardHeader style={{ backgroundColor: '#ececec' }}>
+            <Row>
+              <Col md="2">
+                <h4>Nama Project</h4>
+              </Col>
+              <Col md="2">
+                <h4>Task</h4>
+              </Col>
+              <Col md="2">
+                <h4>Prioritas</h4>
+              </Col>
+              <Col md="2">
+                <h4>PIC</h4>
+              </Col>
+              <Col md="2">
+                <h4>Deadline</h4>
+              </Col>
+              <Col md="2">
+                <h4>Status Progres</h4>
+              </Col>
+            </Row>
+          </CardHeader>
+          <CardBody className={this.state.data.length > 5 ? 'scroll' : ''}>
+            {/* body */}
+            <Row style={{ border: '1px' }}>
+              <Col md="2">{nama_project}</Col>
+              <Col md="2">{Task}</Col>
+              <Col md="2">{priority}</Col>
+              <Col md="2">{pic}</Col>
+              <Col md="2">{deadline}</Col>
+              <Col md="2">{status_progress}</Col>
+            </Row>
+          </CardBody>
+        </Card>
+
         {/* <Row>
           <Col>
             <ReactTable
@@ -286,14 +428,6 @@ class App extends Component {
                 height: '400px'
               }}
               defaultPageSize={50}
-              getTdProps={(state, rowInfo, column) => {
-                return {
-                  style: {
-
-                    background: rowInfo.row.age > 20 ? 'green' : 'red'
-                  }
-                }
-              }}
             />
           </Col>
         </Row> */}

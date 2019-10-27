@@ -47,3 +47,70 @@
     animation-timing-function: linear;
   }
 }
+
+
+<Row style={{ position: 'relative' }}>
+          <Col md="2">
+            <h4>Header1</h4>
+          </Col>
+          <Col md="2">
+            <h4>Header1</h4>
+          </Col>
+          <Col md="2">
+            <h4>Header1</h4>
+          </Col>
+          <Col md="2">
+            <h4>Header1</h4>
+          </Col>
+          <Col md="2">
+            <h4>Header1</h4>
+          </Col>
+          <Col md="2">
+            <h4>Header1</h4>
+          </Col>
+        </Row>
+        <Row style={{ border: '1px' }}>
+          <Col md="2">
+            <div className="scroll">
+              {/* <ul style={{ display: 'block' }}>{nama}</ul> */}
+              content-1
+              <br />
+            </div>
+          </Col>
+          <Col md="2">
+            <div className="scroll">
+              {/* <ul style={{ display: 'block' }}>{nama}</ul> */}
+              content-1
+              <br />
+            </div>
+          </Col>
+          <Col md="2">
+            <div className="scroll">
+              {/* <ul style={{ display: 'block' }}>{nama}</ul> */}
+              content-1
+              <br />
+            </div>
+          </Col>
+          <Col md="2">
+            <div className="scroll">
+              {/* <ul style={{ display: 'block' }}>{nama}</ul> */}
+              content-1
+              <br />
+            </div>
+          </Col>
+          <Col md="2">
+            <div className="scroll">
+              {/* <ul style={{ display: 'block' }}>{nama}</ul> */}
+              content-1
+              <br />
+            </div>
+          </Col>
+          <Col md="2">
+            <div className="scroll">
+              {/* <ul style={{ display: 'block' }}>{nama}</ul> */}
+              content-1
+              <br />
+            </div>
+          </Col>
+        </Row>
+        
