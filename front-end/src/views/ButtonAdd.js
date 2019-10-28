@@ -42,7 +42,7 @@ class ButtonAdd extends Component {
         this.setState({
           visible: false
         });
-        // this.fetch();
+        window.location.reload();
       }
     });
   };

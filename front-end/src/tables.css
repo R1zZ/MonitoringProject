@@ -1,6 +1,6 @@
 #myBody {
   height: 100vh;
-  overflow-y: hidden;
+  overflow: hidden;
   margin: 0;
   padding: 0;
 }
@@ -9,11 +9,12 @@ thead th {
   position: sticky;
   top: 0;
   z-index: 999;
-  background-color: lightblue;
+  background-color: lightskyblue;
 }
 
 tbody {
   z-index: 1;
+  background-color: white !important;
 }
 
 table {
@@ -25,10 +26,23 @@ table {
 td,
 td {
   text-align: center;
-  padding: 60px;
+  padding: 25px;
   border: none !important;
 }
 
 tbody tr:nth-child(odd) {
   background-color: #dddddd;
 }
+
+.pending {
+  /* background-color: #eaff8f !important; */
+  color: red !important;
+}
+
+/* .inprogress {
+  background-color: #d3f261 !important;
+}
+
+.complete {
+  background-color: #5b8c00 !important;
+} */
