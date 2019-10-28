@@ -5,6 +5,7 @@ import { AvForm, AvField, AvGroup } from 'availity-reactstrap-validation';
 import DatePicker from 'react-datepicker';
 import Axios from 'axios';
 import 'antd/dist/antd.css';
+import '../tables.css';
 
 class ButtonAdd extends Component {
   state = {
@@ -68,7 +69,7 @@ class ButtonAdd extends Component {
     return (
       <div>
         <Modal
-          title="Basic Modal"
+          title="ADD Project"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
@@ -164,7 +165,12 @@ class ButtonAdd extends Component {
         </Modal>
         <Row>
           <Col>
-            <Button type="primary" onClick={this.showModal} block>
+            <Button
+              type="primary"
+              onClick={this.showModal}
+              block
+              // style={{ position: 'sticky', top: '0', zIndex: '999' }}
+            >
               Tambah Project
             </Button>
           </Col>

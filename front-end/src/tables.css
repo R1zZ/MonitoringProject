@@ -7,9 +7,15 @@
 
 thead th {
   position: sticky;
-  top: 0;
+  top: 34px;
   z-index: 999;
   background-color: lightskyblue;
+}
+
+button {
+  position: sticky !important;
+  top: 0;
+  z-index: 999;
 }
 
 tbody {
@@ -39,10 +45,10 @@ tbody tr:nth-child(odd) {
   color: red !important;
 }
 
-/* .inprogress {
-  background-color: #d3f261 !important;
+.inprogress {
+  color: #d48806 !important;
 }
 
 .complete {
-  background-color: #5b8c00 !important;
-} */
+  color: #237804 !important;
+}
